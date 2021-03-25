@@ -23,7 +23,7 @@ jobs:
       - name: Install prerequisites
         run: |
           sudo apt update
-          sudo apt install xmlstarlet jq
+          sudo apt install xmlstarlet jq curl
           gem install jekyll bundler
 
       - name: Update website
