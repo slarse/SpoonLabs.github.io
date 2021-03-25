@@ -4,7 +4,7 @@
 # To test the site locally before deploying run `jekyll serve`
 # in the website branch.
 #
-# Non-standard software required: ruby 2.7+, Jekyll 4.0+, xmlstarlet, jq, git, curl, Maven, JDK8+
+# Non-standard software required: ruby 2.4+, Jekyll 4.0+, xmlstarlet, jq, git, curl, Maven, JDK8+
 
 set -o errexit
 set -o nounset
@@ -52,9 +52,9 @@ function generate_javadoc() {
 }
 
 
-function configure_git_as_github_bot() {
-    git config --local user.email github-actions[bot]@users.noreply.github.com
-    git config --local user.name github-actions[bot]
+function configure_git() {
+    git config --local user.email "$GITHUB_USER"@users.noreply.github.com
+    git config --local user.name "$GITHUB_USER"
 }
 
 function update_website() {
@@ -62,7 +62,7 @@ function update_website() {
     cd "$WEBSITE_DST_DIR"
 
     git init -b "$WEBSITE_BRANCH"
-    configure_git_as_github_bot
+    configure_git
 
     git remote add origin "$WEBSITE_REPO_URL"
     git fetch origin
