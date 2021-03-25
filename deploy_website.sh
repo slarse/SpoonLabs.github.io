@@ -78,6 +78,7 @@ function deploy() {
     update_website
 }
 
+NUM_ARGS=3
 if [[ "$#" -ne "$NUM_ARGS" ]]; then
     echo "usage: deploy_website.sh <workdir> <github_user> <github_token>"
     exit 1
@@ -97,7 +98,5 @@ WEBSITE_DST_DIR="$INITIAL_WORKDIR/spoon-website"
 WEBSITE_REPO_SLUG="slarse/spoonlabs.github.io" # TODO remove
 WEBSITE_REPO_URL="https://github.com/$WEBSITE_REPO_SLUG"
 WEBSITE_BRANCH="main"
-
-NUM_ARGS=3
 
 deploy
