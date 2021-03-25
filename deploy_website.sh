@@ -10,19 +10,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-#SOURCE_REPO_URL="https://github.com/INRIA/spoon.git" # TODO use
-SOURCE_REPO_URL="https://github.com/slarse/spoon.git" # TODO remove
-SOURCE_DIR="$INITIAL_WORKDIR/temp-spoon-clone"
-WEBSITE_SOURCE_DIR="$SOURCE_DIR/doc"
-WEBSITE_GENERATED_DIR="$WEBSITE_SOURCE_DIR/_site"
-WEBSITE_DST_DIR="$INITIAL_WORKDIR/spoon-website"
-#WEBSITE_REPO_SLUG="SpoonLabs/spoonlabs.github.io" # TODO use
-WEBSITE_REPO_SLUG="slarse/spoonlabs.github.io" # TODO remove
-WEBSITE_REPO_URL="https://github.com/$WEBSITE_REPO_SLUG"
-WEBSITE_BRANCH="main"
-
-NUM_ARGS=3
-
 function generate_website() {
     # Generate the website
     generate_javadoc
@@ -99,5 +86,18 @@ fi
 INITIAL_WORKDIR="$1"
 GITHUB_USER="$2"
 GITHUB_TOKEN="$3"
+
+#SOURCE_REPO_URL="https://github.com/INRIA/spoon.git" # TODO use
+SOURCE_REPO_URL="https://github.com/slarse/spoon.git" # TODO remove
+SOURCE_DIR="$INITIAL_WORKDIR/temp-spoon-clone"
+WEBSITE_SOURCE_DIR="$SOURCE_DIR/doc"
+WEBSITE_GENERATED_DIR="$WEBSITE_SOURCE_DIR/_site"
+WEBSITE_DST_DIR="$INITIAL_WORKDIR/spoon-website"
+#WEBSITE_REPO_SLUG="SpoonLabs/spoonlabs.github.io" # TODO use
+WEBSITE_REPO_SLUG="slarse/spoonlabs.github.io" # TODO remove
+WEBSITE_REPO_URL="https://github.com/$WEBSITE_REPO_SLUG"
+WEBSITE_BRANCH="main"
+
+NUM_ARGS=3
 
 deploy
