@@ -58,6 +58,15 @@ function update_website() {
 
     cp -r "$WEBSITE_GENERATED_DIR"/* .
 
+    # clobber the README with a notice that the website is automatically generated
+    echo '# Spoon website
+This is the Spoon website hosted on GitHub pages. It is automatically generated and deployed with a GitHub Actions workflow.
+See [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
+
+> **Note:** The deploy workflow overwrites everything on the main branch _except_ for the workflow itself.
+> The workflow can therefore be edited manually, but none of the other files are retained on each automatic website update.' > README.md
+
+
     git add . --force
     git commit -m "Update website" || {
         echo "Nothing to commit, website up-to-date"
