@@ -4,7 +4,7 @@
 # To test the site locally before deploying run `jekyll serve`
 # in the website branch.
 #
-# Copied in the config of job "website deployer" on Jenkins
+# Non-standard software required: ruby 2.7+, Jekyll 4.0+, xmlstarlet, jq, git, curl, Maven, JDK8+
 
 set -o errexit
 set -o nounset
