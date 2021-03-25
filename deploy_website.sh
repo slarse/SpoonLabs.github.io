@@ -27,7 +27,6 @@ function generate_website() {
 function generate_javadoc() {
     # Generate Javadoc and place it in the website sources
     cd "$SOURCE_DIR"
-    git switch issue/3759-use-kramdown-for-website # TODO remove
     mvn -B site
 
     mkdir "$WEBSITE_SOURCE_DIR"/mvnsites/
@@ -88,8 +87,7 @@ INITIAL_WORKDIR="$1"
 GITHUB_USER="$2"
 GITHUB_TOKEN="$3"
 
-#SOURCE_REPO_URL="https://github.com/INRIA/spoon.git" # TODO use
-SOURCE_REPO_URL="https://github.com/slarse/spoon.git" # TODO remove
+SOURCE_REPO_URL="https://github.com/INRIA/spoon.git"
 SOURCE_DIR="$INITIAL_WORKDIR/temp-spoon-clone"
 WEBSITE_SOURCE_DIR="$SOURCE_DIR/doc"
 WEBSITE_GENERATED_DIR="$WEBSITE_SOURCE_DIR/_site"
