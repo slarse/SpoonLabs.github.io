@@ -2,6 +2,7 @@
 
 on:
   push:
+    branches: [ trigger-deploy ]
 
 jobs:
   build:
