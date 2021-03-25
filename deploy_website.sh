@@ -70,7 +70,12 @@ function update_website() {
     # this is intricate; we update the HEAD reference without updating the working directory,
     # and then copy the website into the working directory and force-commit it
     git update-ref refs/heads/"$WEBSITE_BRANCH" refs/remotes/origin/"$WEBSITE_BRANCH"
+    # must restore workflows
+    git restore --staged .github/
+    git restore .github/
+
     cp -r "$WEBSITE_GENERATED_DIR"/* .
+
     git add . --force
     git commit -m "Update website" || {
         echo "Nothing to commit, website up-to-date"
