@@ -10,10 +10,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-INITIAL_WORKDIR="$1"
-GITHUB_USER="$2"
-GITHUB_TOKEN="$3"
-
 #SOURCE_REPO_URL="https://github.com/INRIA/spoon.git" # TODO use
 SOURCE_REPO_URL="https://github.com/slarse/spoon.git" # TODO remove
 SOURCE_DIR="$INITIAL_WORKDIR/temp-spoon-clone"
@@ -85,13 +81,8 @@ function update_website() {
     git push "https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/$WEBSITE_REPO_SLUG" "$WEBSITE_BRANCH"
 }
 
-function main() {
-    # the main script
-    if [[ "$#" -ne "$NUM_ARGS" ]]; then
-        echo "usage: deploy_website.sh <workdir> <github_user> <github_token>"
-        exit 1
-    fi
-
+function deploy() {
+    # Deploy the website
     cd "$INITIAL_WORKDIR"
     mkdir "$WEBSITE_DST_DIR"
     git clone "$SOURCE_REPO_URL" "$SOURCE_DIR"
@@ -100,4 +91,13 @@ function main() {
     update_website
 }
 
-main
+if [[ "$#" -ne "$NUM_ARGS" ]]; then
+    echo "usage: deploy_website.sh <workdir> <github_user> <github_token>"
+    exit 1
+fi
+
+INITIAL_WORKDIR="$1"
+GITHUB_USER="$2"
+GITHUB_TOKEN="$3"
+
+deploy
